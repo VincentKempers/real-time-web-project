@@ -21,11 +21,17 @@ app.get("/", (req,res) => {
 });
 
 io.on('connection', (socket) => {
-  console.log('user channels in');
-  socket.on('geoLocation', (geoLocation) => {
-    console.log(geoLocation);
-    var userGeoLocation = geoLocation;
+  
+  // "https://stackoverflow.com/questions/19150220/creating-rooms-in-socket-io#19150254"
+  socket.on('create', (room) => {
+    console.log("user channels in");
+    console.log(room);
+    socket.join(room);
+  });
 
+
+  socket.on('geoLocation', (geoLocation) => {
+    var userGeoLocation = geoLocation;
     socket.emit('userloc', userGeoLocation);
   })
 });
