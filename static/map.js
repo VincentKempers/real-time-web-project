@@ -6,8 +6,6 @@ var geoLocation = {
     long: -0.09
 };
 
-
-
 var mymap = L.map('map').setView([geoLocation.lat, geoLocation.long], 13);
 
 function getLocation() {
@@ -27,9 +25,15 @@ function showPosition(position) {
   geoLocation.long = position.coords.longitude;
 
     // Emit the geoLocation
-    socket.emit('create', geoLocation);
+    socket.emit('geoLocation', geoLocation);
     // map view
     mymap.setView([geoLocation.lat, geoLocation.long])
+
+    L.circle([geoLocation.lat, geoLocation.long], {
+      color: 'red',
+      fill: '#fff',
+      radius: 10
+    }).addTo(mymap);
 };
 
 // map
@@ -39,7 +43,6 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
     accessToken: 'pk.eyJ1IjoidmluY2VudGtlbXBlcnMiLCJhIjoiY2pnNnRhYW9zMG8wcDMycnc4dDh3aDNjNyJ9.-wLNslCspydMxYt3w2Xnhw'
 }).addTo(mymap);
 
-
 socket.on('userloc', (userGeoLocation) => {
   L.circle([userGeoLocation.lat, userGeoLocation.long], {
     color: 'red',
@@ -47,6 +50,5 @@ socket.on('userloc', (userGeoLocation) => {
     radius: 10
   }).addTo(mymap);
 });
-
 
 getLocation();
