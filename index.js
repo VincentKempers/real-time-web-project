@@ -54,8 +54,6 @@ app.set('view engine', 'ejs');
 
 // server files in the static folder when '/static' is requested
 app.use('/static', express.static('static'));
-<<<<<<< HEAD
-=======
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -65,7 +63,6 @@ app.use(bodyParser.json());
 // temporary username save
 app.use(sessionMiddleware);
 
->>>>>>> e45714a1a5d1a2bc21704238e945b51fe363c095
 // get the directory
 app.get('/', (req, res) => {
 	let newId = shortid.generate();
@@ -119,23 +116,6 @@ app.get('/handle-oauth', (req, res) => {
 	});
 });
 
-<<<<<<< HEAD
-io.on('connection', (socket) => {
-
-  // "https://stackoverflow.com/questions/19150220/creating-rooms-in-socket-io#19150254"
-  socket.on('create', (room) => {
-    console.log("user channels in");
-    console.log(room);
-    socket.join(room);
-  });
-
-
-  socket.on('geoLocation', (geoLocation) => {
-    var userGeoLocation = geoLocation;
-    socket.broadcast.emit('userloc', userGeoLocation)
-    socket.emit('userloc', userGeoLocation);
-  })
-=======
 app.post('/save/:roomId', (req, res) => {
 	console.log(req.body);
 	let roomSaveUrl = req.params.roomId;
@@ -222,7 +202,6 @@ io.on('connection', function(socket) {
 	socket.on('disconnect', () => {
 		console.log('user disconnected');
 	});
->>>>>>> e45714a1a5d1a2bc21704238e945b51fe363c095
 });
 
 // server list
