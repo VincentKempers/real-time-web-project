@@ -37,7 +37,7 @@ const RoomDb = require('./data/Room.js');
 var config = {
 	client_id: process.env.GH_CI,
 	client_secret: process.env.GH_CS,
-	redirect_url: 'http://localhost:3000/github/callback',
+	redirect_url: 'https://application-rtw.herokuapp.com/github/callback',
 	authorize_url: 'https://github.com/login/oauth/authorize',
 	token_url: 'https://github.com/login/oauth/access_token',
 	user_url: 'https://api.github.com/user',
@@ -71,7 +71,7 @@ app.get('/', (req, res) => {
 
 app.get('/login', (req, res) => {
 	res.redirect(
-		'https://github.com/login/oauth/authorize?client_id=f03e10a6a5e093f0eb14&type=user_agent&redirect_uri=http://localhost:7008/handle-oauth'
+		'https://github.com/login/oauth/authorize?client_id=f03e10a6a5e093f0eb14&type=user_agent&redirect_uri=https://application-rtw.herokuapp.com/handle-oauth'
 	);
 });
 
