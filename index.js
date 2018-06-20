@@ -205,6 +205,6 @@ io.on('connection', function(socket) {
 });
 
 // server list
-server.listen(7008, () => {
+server.listen(process.env.PORT, () => {
 	console.log('app is running on localhost:7008, WAHOOO');
 });
