@@ -12,6 +12,8 @@
 
 ## real-time-web-project
 
+![Real time markdown editor home screen](docAssets/homepage.png)
+
 [Link to the project](https://application-rtw.herokuapp.com/)
 
 ---
@@ -83,20 +85,26 @@ The following features are/will be added to application:
 The github api is being called though the node package [request](https://www.npmjs.com/package/request).
 
 ```JS
+// start request
 request(options, function(err, resp, body) {
 		if (body) {
+      // parse the response to json
 			let parsedBody = JSON.parse(body);
-
+      /* 
+        The return (and head) will be used to get the second part of the call. What we are getting out of the call is a code.
+       */
 			options_user = {
 				method: 'GET',
 				url: config.user_url + '?access_token=' + parsedBody.access_token,
 				headers: { accept: 'application/json', 'User-Agent': 'custom' },
 			};
-		}
+    }
+         /* 
+        We use the code in the first call to retrieve the unique access and use the data we need..
+       */
 		request(options_user, function(err2, resp2, body2) {
 			if (body2) {
 				let parsedBody2 = JSON.parse(body2);
-				console.log(parsedBody2.login);
 				req.session.username = parsedBody2.login;
 				res.redirect('/overview');
 			}
@@ -119,11 +127,12 @@ io.on('connection', (socket) => {
 # TODO
 
 <!-- Maybe a checklist of done stuff and stuff still on your wishlist? ✅ -->
-* [x] Stuff to do
-* [ ] Stuff to do
-* [ ] Stuff to do
-* [ ] Stuff to do
-* [ ] Stuff to do
+* [x] Setup the server.
+* [ ] Add marked package
+* [ ] show input data parsed on the page
+* [ ] Add a socket.io
+* [ ] Add shortid
+* [ ] Connect the 
 * [ ] Stuff to do
 * [ ] Stuff to do
 * [ ] Stuff to do
