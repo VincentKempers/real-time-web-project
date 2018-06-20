@@ -1,4 +1,4 @@
-<h1 align="center">let's Meetup.</h1>
+<h1 align="center">Real Time Markdown Editor</h1>
 
 <div align="center">
   :globe_with_meridians::pushpin::bike: <img src="https://img.shields.io/badge/webdesign-building-yellow.svg">
@@ -12,7 +12,7 @@
 
 ## real-time-web-project
 
-[Link to the project](#)
+[Link to the project](https://application-rtw.herokuapp.com/)
 
 ---
 
@@ -41,15 +41,23 @@
 The following features are/will be added to application:
 
 ### Added
-* show markdown in the editor.
-* show markdown in the editor.
-* show markdown in the editor.
-* show markdown in the editor.
-* show markdown in the editor.
+* Show markdown in the editor.
+* Markdown renderer.
+* Login to save to database. 
+* store the latest version in the database though a button.
+* Sort of implementation of rights. (if you are logged in you can save)
+* Unique id in the rooms.
+* Show the changes of the server and client.
+* Send the latest version to the client.
+* Real time connection so two people can edit.
 
-### to be added
+### Still needs to be added
+* Some styling
+* A better version of tunneling.
+* 
 
 # How does this work.
+
 
 # Services
 
@@ -65,10 +73,37 @@ The following features are/will be added to application:
 
 [simple authentication in NodeJS](https://danialk.github.io/blog/2013/02/20/simple-authentication-in-nodejs/)
 
+[Github API Oauth](https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/)
+
 <!-- What external data source is featured in your project and what are its properties 🌠 -->
 
 # API
+[Github API Getting Started](https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/)
 
+The github api is being called though the node package [request](https://www.npmjs.com/package/request).
+
+```JS
+request(options, function(err, resp, body) {
+		if (body) {
+			let parsedBody = JSON.parse(body);
+
+			options_user = {
+				method: 'GET',
+				url: config.user_url + '?access_token=' + parsedBody.access_token,
+				headers: { accept: 'application/json', 'User-Agent': 'custom' },
+			};
+		}
+		request(options_user, function(err2, resp2, body2) {
+			if (body2) {
+				let parsedBody2 = JSON.parse(body2);
+				console.log(parsedBody2.login);
+				req.session.username = parsedBody2.login;
+				res.redirect('/overview');
+			}
+		});
+	});
+});
+```
 # Connection
 
 ```

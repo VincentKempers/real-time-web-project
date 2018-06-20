@@ -54,6 +54,7 @@ app.set('view engine', 'ejs');
 
 // server files in the static folder when '/static' is requested
 app.use('/static', express.static('static'));
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
