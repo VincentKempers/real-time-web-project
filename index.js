@@ -45,10 +45,6 @@ var config = {
 };
 
 
-// var googleMapsClient = require('@google/maps').createClient({
-//   key:
-// });
-
 // https://scotch.io/tutorials/use-ejs-to-template-your-node-application
 app.set('view engine', 'ejs');
 
@@ -133,7 +129,6 @@ app.get('/overview', (req, res) => {
 });
 // go to room
 app.get('/room/:newId', (req, res) => {
-	console.log(req.params);
 	let roomName = req.params.newId;
 
 	// 1 Create room in database
@@ -185,10 +180,8 @@ io.on('connection', function(socket) {
 		socket.join(room).emit('invigorateFirstText', contentsOfRooms[room]);
 	});
 	// emit something
-	socket.emit('file', { hello: 'world' });
 	socket.on('my other event', data => {
 		const textToCheck = contentsOfRooms[data.roomId] ? contentsOfRooms[data.roomId] : '';
-		// contentsOfRooms[data.roomId] = data.markedTekst;
 		const diffs = dmp.diff_main(textToCheck, data.markedTekst);
 		const patch = dmp.patch_make(textToCheck, diffs);
 		const updatedTekst = dmp.patch_apply(patch, textToCheck);
