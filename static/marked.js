@@ -15,7 +15,7 @@ input.addEventListener(
 		};
 
 		// send the new value and thislocation/roomid
-		socket.emit('my other event', totalOnPage);
+		socket.emit('sendText', totalOnPage);
 	},
 	true
 );

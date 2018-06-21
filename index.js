@@ -180,7 +180,7 @@ io.on('connection', function(socket) {
 		socket.join(room).emit('invigorateFirstText', contentsOfRooms[room]);
 	});
 	// emit something
-	socket.on('my other event', data => {
+	socket.on('sendText', data => {
 		const textToCheck = contentsOfRooms[data.roomId] ? contentsOfRooms[data.roomId] : '';
 		const diffs = dmp.diff_main(textToCheck, data.markedTekst);
 		const patch = dmp.patch_make(textToCheck, diffs);
