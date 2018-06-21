@@ -45,7 +45,7 @@ This is an application that focuses on collaboration on one file. Users can edit
 # Features
 The following features are/will be added to application:
 
-### Added
+### functionalities
 * Show markdown in the editor.
 * Markdown renderer.
 * Login to save to database. 
@@ -56,8 +56,7 @@ The following features are/will be added to application:
 * Send the latest version to the client.
 * Real time connection so two people can edit.
 
-### Still needs to be added
-* Some styling
+### functionalities that needs to be added
 * A better version of tunneling.
 * A view of all the markdown files used.
 * Something happening when the server is down.
@@ -78,10 +77,11 @@ The following features are/will be added to application:
 - [express-sessions](https://github.com/expressjs/session)
 
 # Thinking about authentication
-
+Initially I wanted to create my own authenticator but.. I noticed that my knowledge of authentication was pretty surface level. I have doing some research and because of time constraints i couldn't achieve my goal. The simple authentication blogpost would be a solution for a later version of this app.
 [simple authentication in NodeJS](https://danialk.github.io/blog/2013/02/20/simple-authentication-in-nodejs/)
 
-[Github API Oauth](https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/)
+
+[Github API Oauth](https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/) was my savest bet. I wanted the authentication to be relevant. So that dismissed ~~Facebook~~, ~~Twitter~~ and ~~Google plus~~. This authenticator isn't the only way to use the application. You can use the application even though you aren't logged in. The same core functionality will work, like [Codeshare.io](http://codeshare.io/). When you log in the application there will be more features available. Then a standard user.
 
 
 # API
@@ -120,7 +120,7 @@ request(options, function(err, resp, body) {
 });
 ```
 # Connection
-With the use of socket.io connections i could create rooms and emit the first "stored" tekst to the right room. I did that the following way.
+With the use of socket.io connections I could create rooms and emit the first "stored" tekst to the right room. I did that the following way.
 ```JS
 io.on('connection', function(socket) {
   // on console user connects
@@ -144,7 +144,7 @@ io.on('connection', function(socket) {
 });
 ```
 
-When i created a room and knew it worked. I needed to show the data that was generated. But when two people are typing i didn't want one version to be leading. So i used [Google diff-patch-match](https://github.com/google/diff-match-patch) to make that a lot easier. **First** you need to know the diffrences, **then** you need to patch the original with the differences. **When** you have the patch then you can apply your changes. When done send the data to the client so it can update the view of input.
+When I created a room and knew it worked. I needed to show the data that was generated. But when two people are typing I did not want one version to be leading. So I used [Google diff-patch-match](https://github.com/google/diff-match-patch) to make that a lot easier. **First** you need to know the diffrences, **then** you need to patch the original with the differences. **When** you have the patch then you can apply your changes. When done send the data to the client so it can update the view of input.
 ```JS
 // emit something
 	socket.on('my other event', data => {
@@ -183,7 +183,9 @@ _Following these steps (assuming you already work from a github repo):_
 
 # TODO
 
-<!-- Maybe a checklist of done stuff and stuff still on your wishlist? ✅ -->
+> This will be a _"lengthy"_ ToDo list because i'am really trying to set everything up in smaller steps.
+
+
 * [x] Setup the server.
 * [x] Add marked package
 * [x] show input data parsed on the page
@@ -214,6 +216,8 @@ _Following these steps (assuming you already work from a github repo):_
 - [ ] A way to show the list of users that are logged in and not logged in.
 - [ ] Database stores of multiple sessions, this should be 1 store of 1 save.
 - [ ] Probably redo the database setup to make it more fail proof.
+- [ ] Own authentication.
+- [ ] Show the user that you can't save without being logged in.
 
 # License
 <!-- How about a license here? 📜 (or is it a licence?) 🤷 -->
