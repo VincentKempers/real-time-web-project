@@ -45,6 +45,8 @@ This is an application that focuses on collaboration on one file. Users can edit
 # Features
 The following features are/will be added to application:
 
+![functionality gif](docAssets/showfunctionality.gif)
+
 ### functionalities
 * Show markdown in the editor.
 * Markdown renderer.
