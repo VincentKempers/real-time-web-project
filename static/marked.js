@@ -1,10 +1,14 @@
 var socket = io();
 var input = document.getElementById('input');
 var preview = document.getElementById('content');
+var h1 = document.querySelector("h1");
+
 
 // location
 var loc = window.location.pathname;
 var thisLocation = loc.split('/')[2];
+
+h1.innerHTML = `Welcome to this room: ${thisLocation}`
 
 input.addEventListener(
 	'input',
